@@ -3,22 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fun Interactive Hello World</title>
+    <title>Meow World - Fun Interactive Cat Page</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1 class="hello-text">Hello, World!</h1>
+        <h1 class="hello-text">Meow, World!</h1>
+        <div class="cat-container">
+            <div class="cat-face">
+                <div class="ear left-ear"></div>
+                <div class="ear right-ear"></div>
+                <div class="eye left-eye"></div>
+                <div class="eye right-eye"></div>
+                <div class="nose"></div>
+                <div class="mouth"></div>
+                <div class="whisker whisker-1"></div>
+                <div class="whisker whisker-2"></div>
+                <div class="whisker whisker-3"></div>
+                <div class="whisker whisker-4"></div>
+                <div class="whisker whisker-5"></div>
+                <div class="whisker whisker-6"></div>
+            </div>
+        </div>
         <div class="interactive-elements">
-            <button id="colorButton" class="btn">Change Colors</button>
-            <button id="animateButton" class="btn">Animate Text</button>
-            <button id="particleButton" class="btn">Add Particles</button>
+            <button id="colorButton" class="btn cat-btn">🌈 Change Colors</button>
+            <button id="animateButton" class="btn cat-btn">🐾 Animate Cat</button>
+            <button id="particleButton" class="btn cat-btn">✨ Add Particles</button>
+            <button id="meowButton" class="btn cat-btn">🐱 Meow!</button>
         </div>
         <div id="particleContainer"></div>
         <div class="counter">
-            <p>Click Count: <span id="clickCount">0</span></p>
+            <p>Purr Count: <span id="clickCount">0</span></p>
         </div>
-    </div>
+        <div class="cat-gallery">
+            <h2>🐾 Cat Gallery 🐾</h2>
+            <div class="gallery-container">
+                <div class="gallery-item" data-cat="1"></div>
+                <div class="gallery-item" data-cat="2"></div>
+                <div class="gallery-item" data-cat="3"></div>
+            </div>
+        </div>
+    <audio id="meowSound" preload="auto">
+        <source src="https://www.myinstants.com/media/sounds/meow.mp3" type="audio/mpeg">
+    </audio>
     <script src="script.js"></script>
 </body>
 </html>

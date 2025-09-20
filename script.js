@@ -1,21 +1,18 @@
 // DOM Elements
 const helloText = document.querySelector('.hello-text');
 const cat = document.querySelector('.cat');
-const catHead = document.querySelector('.cat-head');
-const catEars = document.querySelectorAll('.cat-ear');
-const catTail = document.querySelector('.cat-tail');
-const catPaws = document.querySelectorAll('.cat-paw');
+const catImage = document.getElementById('catImage');
 const colorButton = document.getElementById('colorButton');
 const animateButton = document.getElementById('animateButton');
 const particleButton = document.getElementById('particleButton');
 const meowButton = document.getElementById('meowButton');
 const treatButton = document.getElementById('treatButton');
+const newCatButton = document.getElementById('newCatButton');
 const clickCountElement = document.getElementById('clickCount');
 const particleContainer = document.getElementById('particleContainer');
 const treatContainer = document.getElementById('treatContainer');
 const meowSound = document.getElementById('meowSound');
 const treatSound = document.getElementById('treatSound');
-const galleryItems = document.querySelectorAll('.gallery-item');
 
 // State variables
 let clickCount = 0;
@@ -63,21 +60,6 @@ function changeColors() {
     // Change text color
     helloText.style.color = textColors[Math.floor(Math.random() * textColors.length)];
     
-    // Change cat color
-    const catColor = catColors[Math.floor(Math.random() * catColors.length)];
-    catHead.style.background = catColor;
-    catEars.forEach(ear => ear.style.borderBottomColor = catColor);
-    document.querySelectorAll('.cat-body, .cat-tail, .cat-paw').forEach(part => {
-        part.style.background = catColor;
-    });
-    
-    // Add ear wiggle animation
-    catEars.forEach(ear => ear.classList.add('cat-ear-wiggle'));
-    
-    setTimeout(() => {
-        catEars.forEach(ear => ear.classList.remove('cat-ear-wiggle'));
-    }, 500);
-    
     // Update click count
     clickCount++;
     clickCountElement.textContent = clickCount;
@@ -90,17 +72,9 @@ function toggleAnimation() {
     if (isAnimating) {
         helloText.classList.add('animate');
         animateButton.textContent = '🐾 Stop Animation';
-        // Start cat animation
-        cat.classList.add('cat-animate');
-        catTail.classList.add('cat-tail-wag');
-        catAnimationEnabled = true;
     } else {
         helloText.classList.remove('animate');
         animateButton.textContent = '🐾 Animate Cat';
-        // Stop cat animation
-        cat.classList.remove('cat-animate');
-        catTail.classList.remove('cat-tail-wag');
-        catAnimationEnabled = false;
     }
     
     // Update click count
@@ -224,13 +198,6 @@ function textClickHandler() {
     
     animate();
     
-    // Add ear wiggle animation
-    catEars.forEach(ear => ear.classList.add('cat-ear-wiggle'));
-    
-    setTimeout(() => {
-        catEars.forEach(ear => ear.classList.remove('cat-ear-wiggle'));
-    }, 500);
-    
     // Update click count
     clickCount++;
     clickCountElement.textContent = clickCount;
@@ -240,13 +207,6 @@ function textClickHandler() {
 function playMeow() {
     meowSound.currentTime = 0;
     meowSound.play().catch(e => console.log("Audio play failed:", e));
-    
-    // Add ear wiggle animation
-    catEars.forEach(ear => ear.classList.add('cat-ear-wiggle'));
-    
-    setTimeout(() => {
-        catEars.forEach(ear => ear.classList.remove('cat-ear-wiggle'));
-    }, 500);
     
     // Update click count
     clickCount++;
@@ -267,15 +227,6 @@ function throwTreat() {
     treat.style.top = '-50px';
     
     treatContainer.appendChild(treat);
-    
-    // Add paw tap animation to front paws
-    document.querySelector('.front-left-paw').classList.add('cat-paw-tap');
-    document.querySelector('.front-right-paw').classList.add('cat-paw-tap');
-    
-    setTimeout(() => {
-        document.querySelector('.front-left-paw').classList.remove('cat-paw-tap');
-        document.querySelector('.front-right-paw').classList.remove('cat-paw-tap');
-    }, 300);
     
     // Update treats given and click count
     treatsGiven++;
@@ -321,25 +272,38 @@ meowButton.addEventListener('click', playMeow);
 treatButton.addEventListener('click', throwTreat);
 helloText.addEventListener('click', textClickHandler);
 
-// Add event listeners to gallery items
-galleryItems.forEach(item => {
-    item.addEventListener('click', galleryItemClickHandler);
-});
+// Function to load a new cat image
+function loadNewCat() {
+    // Add a loading animation
+    catImage.style.opacity = '0.5';
+    
+    // Create a new image with a timestamp to prevent caching
+    const timestamp = new Date().getTime();
+    catImage.src = `https://cataas.com/cat?width=400&height=400&t=${timestamp}`;
+    
+    // Restore opacity when image loads
+    catImage.onload = () => {
+        catImage.style.opacity = '1';
+    };
+    
+    // Update click count
+    clickCount++;
+    clickCountElement.textContent = clickCount;
+}
 
 // Add click handler to cat
-cat.addEventListener('click', () => {
+catImage.addEventListener('click', () => {
     playMeow();
-    
-    // Add cat dance animation if not already animating
-    if (!catAnimationEnabled) {
-        cat.classList.add('cat-animate');
-        catTail.classList.add('cat-tail-wag');
-        setTimeout(() => {
-            cat.classList.remove('cat-animate');
-            catTail.classList.remove('cat-tail-wag');
-        }, 2000);
-    }
 });
+
+// Event Listeners
+colorButton.addEventListener('click', changeColors);
+animateButton.addEventListener('click', toggleAnimation);
+particleButton.addEventListener('click', toggleParticles);
+meowButton.addEventListener('click', playMeow);
+treatButton.addEventListener('click', throwTreat);
+newCatButton.addEventListener('click', loadNewCat);
+helloText.addEventListener('click', textClickHandler);
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {

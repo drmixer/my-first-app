@@ -51,8 +51,15 @@ body {
 
 .cat {
     position: relative;
-    width: 200px;
-    height: 250px;
+    width: 400px;
+    height: 400px;
+}
+
+#catImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
 }
 
 .cat-head {

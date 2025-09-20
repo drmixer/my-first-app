@@ -10,19 +10,28 @@
     <div class="container">
         <h1 class="hello-text">Meow, World!</h1>
         <div class="cat-container">
-            <div class="cat-face">
-                <div class="ear left-ear"></div>
-                <div class="ear right-ear"></div>
-                <div class="eye left-eye"></div>
-                <div class="eye right-eye"></div>
-                <div class="nose"></div>
-                <div class="mouth"></div>
-                <div class="whisker whisker-1"></div>
-                <div class="whisker whisker-2"></div>
-                <div class="whisker whisker-3"></div>
-                <div class="whisker whisker-4"></div>
-                <div class="whisker whisker-5"></div>
-                <div class="whisker whisker-6"></div>
+            <div class="cat">
+                <div class="cat-ear left-ear"></div>
+                <div class="cat-ear right-ear"></div>
+                <div class="cat-head">
+                    <div class="cat-eye left-eye"></div>
+                    <div class="cat-eye right-eye"></div>
+                    <div class="cat-nose"></div>
+                    <div class="cat-mouth"></div>
+                    <div class="cat-whisker whisker-1"></div>
+                    <div class="cat-whisker whisker-2"></div>
+                    <div class="cat-whisker whisker-3"></div>
+                    <div class="cat-whisker whisker-4"></div>
+                    <div class="cat-whisker whisker-5"></div>
+                    <div class="cat-whisker whisker-6"></div>
+                </div>
+                <div class="cat-body">
+                    <div class="cat-tail"></div>
+                    <div class="cat-paw front-left-paw"></div>
+                    <div class="cat-paw front-right-paw"></div>
+                    <div class="cat-paw back-left-paw"></div>
+                    <div class="cat-paw back-right-paw"></div>
+                </div>
             </div>
         </div>
         <div class="interactive-elements">
@@ -30,21 +39,31 @@
             <button id="animateButton" class="btn cat-btn">🐾 Animate Cat</button>
             <button id="particleButton" class="btn cat-btn">✨ Add Particles</button>
             <button id="meowButton" class="btn cat-btn">🐱 Meow!</button>
+            <button id="treatButton" class="btn cat-btn">🍖 Give Treat</button>
         </div>
         <div id="particleContainer"></div>
         <div class="counter">
             <p>Purr Count: <span id="clickCount">0</span></p>
         </div>
         <div class="cat-gallery">
-            <h2>🐾 Cat Gallery 🐾</h2>
+            <h2>🐾 Cat Breeds Gallery 🐾</h2>
             <div class="gallery-container">
-                <div class="gallery-item" data-cat="1"></div>
-                <div class="gallery-item" data-cat="2"></div>
-                <div class="gallery-item" data-cat="3"></div>
+                <div class="gallery-item" data-breed="persian">
+                    <div class="breed-name">Persian</div>
+                </div>
+                <div class="gallery-item" data-breed="siamese">
+                    <div class="breed-name">Siamese</div>
+                </div>
+                <div class="gallery-item" data-breed="mainecoon">
+                    <div class="breed-name">Maine Coon</div>
+                </div>
             </div>
-        </div>
+        <div class="treat-container" id="treatContainer"></div>
     <audio id="meowSound" preload="auto">
-        <source src="https://www.myinstants.com/media/sounds/meow.mp3" type="audio/mpeg">
+        <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_651e79c79a.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="treatSound" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/mpeg">
     </audio>
     <script src="script.js"></script>
 </body>
